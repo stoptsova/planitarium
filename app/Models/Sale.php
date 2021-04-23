@@ -43,5 +43,10 @@ class Sale extends Model
 
     ];
 
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
+
 
 }

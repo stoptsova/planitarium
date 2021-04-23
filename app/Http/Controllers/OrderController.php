@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Sale;
+use App\Models\Status;
 use App\Repositories\OrderRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -79,8 +81,11 @@ class OrderController extends AppBaseController
 
             return redirect(route('orders.index'));
         }
+        $sales = Sale::where('order_id','=', $order->id)->get();
+        $statuses = Status::all();
+        //dd($statuses);
 
-        return view('orders.show')->with('order', $order);
+        return view('orders.show')->with('order', $order)->with('sales', $sales)->with('statuses', $statuses);
     }
 
     /**

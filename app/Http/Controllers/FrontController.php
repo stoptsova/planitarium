@@ -153,14 +153,18 @@ class FrontController extends Controller
             $saleFields['quantity'] = $details['quantity'];
 
             $sale = Sale::create($saleFields);
+            $request->session()->forget('cart');
+            //отпраить заказ на почту
+            //отправить заказ в телеграм
+            return view('front.order-finish');
+
+
             //echo $sale->id;
             //$total += $details['prise'] * $details['quantity'];
         }
 
         //dd($neworder->id);
     }
-
-
     private function getCartTotal()
     {
         $total = 0;

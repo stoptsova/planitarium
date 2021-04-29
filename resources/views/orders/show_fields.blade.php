@@ -15,8 +15,10 @@
     {!! Form::label('status_id', 'Статус заказа:') !!}
     <p>{{ $order->status->name}}</p>
 
-    <a href="javascript:void(0)"   data-id="{{$order->id}}"  class="edit btn btn-primary btn-sm editProduct">ChangeStatus </a>
+    <a href="javascript:void(0)"   data-id="{{$order->id}}"  id="ChangeStatus" class="edit btn btn-primary btn-sm ChangeStatus">ChangeStatus </a>
+
 </div>
+
 
 <!-- Created At Field -->
 <div class="form-group">

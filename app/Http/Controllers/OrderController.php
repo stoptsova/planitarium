@@ -64,6 +64,10 @@ class OrderController extends AppBaseController
 
         return redirect(route('orders.index'));
     }
+    public function changeStatus(Request $request)
+    {
+        dd($request->id);
+    }
 
     /**
      * Display the specified Order.

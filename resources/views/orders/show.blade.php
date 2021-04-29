@@ -68,33 +68,26 @@
     </div>
     </section>
 
-    <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal fade" id="ChangeStatusModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modelHeading"></h4>
+                    <h4 class="modal-title" id="modelHeading">Изменение статуса заказа</h4>
                 </div>
                 <div class="modal-body">
                     <form id="productForm" name="productForm" class="form-horizontal">
-                        <input type="hidden" name="product_id" id="product_id">
+                        <input type="hidden" name="product_id" id="product_id" value="{{$order->id}}">
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Новый статус</label>
+                            <label for="name" class="col-sm-12 control-label">Новый статус</label>
                             <div class="col-sm-12">
-                                <select class="form-control" id="status_id" name="status_id">
+                                <select class="form-control" id="status_id" name="status_id" >
                                 @foreach($statuses as $status )
-
                                     <option value="{{$status->id}}">{{$status->name}}</option>
                                 @endforeach
                                 </select>
-
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Details</label>
-                            <div class="col-sm-12">
-                                <textarea id="detail" name="detail" required="" placeholder="Enter Details" class="form-control"></textarea>
-                            </div>
-                        </div>
+                        {{ csrf_field() }}
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
                             </button>
@@ -111,19 +104,47 @@
 @endsection
 @section('page_js')
     <script type="text/javascript">
+        $(document).ready(function(){
+            $("#ChangeStatus").click(
+                function()
+                {
+                    var ele = $(this);
+                    var id = ele.attr("data-id");
+                    alert( id );
+                    $('#ChangeStatusModal').modal();
 
-        $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                });
+        });
+        $("#message").hide();
+        $("#saveBtn").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            var id = $("#product_id").val();
+            var status_id = $("#status_id").val();
+            //alert( id +' -+==+- '+ status_id );
+
+
+            $.ajax({
+                url: '{{ url('/admin/chengestatus') }}',
+                method: "patch",
+                data: {_token: '{{ csrf_token() }}', id: id, status_id: status_id},
+                dataType: "json",
+                success: function (response) {
+
+                    loading.hide();
+
+                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
+
+                    $("#header-bar").html(response.data);
+
+                    product_subtotal.text(response.subTotal);
+
+                    cart_total.text(response.total);
                 }
             });
-            $('#ChangeStatus').click(function () {
-                $('#saveBtn').val("изменить статус");
-                $('#product_id').val('');
-                $('#productForm').trigger("reset");
-                $('#modelHeading').html("Изменение статуса заказа");
-                $('#ajaxModel').modal('show');
+        });
 
-            });
+        </script>
 @endsection

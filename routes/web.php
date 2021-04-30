@@ -25,11 +25,13 @@ Auth::routes();
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.main');
-    Route::patch('/changestatus/{id}{status_id}', [App\Http\Controllers\OrderController::class, 'changeStatus']);
+    Route::put('/changestatus', [App\Http\Controllers\OrderController::class, 'changeStatus']);
     Route::resource('/menus', App\Http\Controllers\MenuController::class);
     Route::resource('statuses', App\Http\Controllers\StatusController::class);
     Route::resource('orders', App\Http\Controllers\OrderController::class);
 });
+
+Route::get('/chs', [App\Http\Controllers\OrderController::class, 'changeStatus']);
 
 Route::get('cart', [App\Http\Controllers\FrontController::class,'cart'])->name('cart');
 Route::get('order', [App\Http\Controllers\FrontController::class,'createOrder'])->name('order');

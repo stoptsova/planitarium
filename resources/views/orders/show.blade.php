@@ -109,8 +109,8 @@
                 function()
                 {
                     var ele = $(this);
-                    var id = ele.attr("data-id");
-                    alert( id );
+                    //var id = ele.attr("data-id");
+                    //alert( id );
                     $('#ChangeStatusModal').modal();
 
                 });
@@ -127,21 +127,14 @@
 
 
             $.ajax({
-                url: '{{ url('/admin/chengestatus') }}',
-                method: "patch",
+                url: '{{ url('/chs') }}',
+                method: "get",
                 data: {_token: '{{ csrf_token() }}', id: id, status_id: status_id},
                 dataType: "json",
                 success: function (response) {
-
-                    loading.hide();
-
-                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
-
-                    $("#header-bar").html(response.data);
-
-                    product_subtotal.text(response.subTotal);
-
-                    cart_total.text(response.total);
+                    $('#ChangeStatusModal').modal('toggle');
+                    alert(response.msg);
+                    setTimeout('location.replace("/admin/orders/{{$order->id}}")',500);
                 }
             });
         });

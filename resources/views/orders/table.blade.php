@@ -15,7 +15,7 @@
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->telephone }}</td>
                 <td>{{ $order->address }}</td>
-                <td>{{ $order->status->name }}</td>
+                <td><a href="#" class="ChangeStatus" data-id="{{ $order->id }}">{{ $order->status->name }}</a></td>
                            <td class=" text-center">
                                {!! Form::open(['route' => ['orders.destroy', $order->id], 'method' => 'delete']) !!}
                                <div class='btn-group'>

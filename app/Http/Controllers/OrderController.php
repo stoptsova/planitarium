@@ -33,9 +33,10 @@ class OrderController extends AppBaseController
     public function index(Request $request)
     {
         $orders = $this->orderRepository->paginate(10);
+        $statuses = Status::all();
 
         return view('orders.index')
-            ->with('orders', $orders);
+            ->with('orders', $orders)->with('statuses', $statuses);
     }
 
     /**

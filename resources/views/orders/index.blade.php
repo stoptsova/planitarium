@@ -20,7 +20,37 @@
 
         @include('stisla-templates::common.paginate', ['records' => $orders])
 
+
     </section>
+    <div class="modal fade" id="ChangeStatusModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modelHeading">Изменение статуса заказа</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="change" name="productForm" class="form-horizontal">
+                        <input type="hidden" name="order_id" id="order_id" value="">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-12 control-label">Новый статус</label>
+                            <div class="col-sm-12">
+                                <select class="form-control" id="status_id" name="status_id" >
+                                    @foreach($statuses as $status )
+                                        <option value="{{$status->id}}">{{$status->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        {{ csrf_field() }}
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('page_js')
     <script type="text/javascript">
@@ -30,34 +60,36 @@
                 {
                     var ele = $(this);
                     var id = ele.attr("data-id");
-                    alert( id );
-                    //$('#ChangeStatusModal').modal();
+
+                    //alert( id );
+                    $("#order_id").attr("value", id);
+                    $('#ChangeStatusModal').modal('toggle');
 
                 });
         });
-       // $("#message").hide();
-       {{-- $("#saveBtn").click(function (e) {--}}
-       {{--     e.preventDefault();--}}
+        $("#message").hide();
+        $("#saveBtn").click(function (e) {
+            e.preventDefault();
 
-       {{--     var ele = $(this);--}}
+            var ele = $(this);
 
-       {{--     var id = $("#product_id").val();--}}
-       {{--     var status_id = $("#status_id").val();--}}
-       {{--     //alert( id +' -+==+- '+ status_id );--}}
+            var id = $("#order_id").val();
+            var status_id = $("#status_id").val();
+            //alert( id +' -+==+- '+ status_id );
 
 
-       {{--     $.ajax({--}}
-       {{--         url: '{{ url('/chs') }}',--}}
-       {{--         method: "get",--}}
-       {{--         data: {_token: '{{ csrf_token() }}', id: id, status_id: status_id},--}}
-       {{--         dataType: "json",--}}
-       {{--         success: function (response) {--}}
-       {{--             $('#ChangeStatusModal').modal('toggle');--}}
-       {{--             alert(response.msg);--}}
-       {{--             setTimeout('location.replace("/admin/orders/{{$order->id}}")',500);--}}
-       {{--         }--}}
-       {{--     });--}}
-       {{-- });--}}
+            $.ajax({
+                url: '{{ url('/chs') }}',
+                method: "get",
+                data: {_token: '{{ csrf_token() }}', id: id, status_id: status_id},
+                dataType: "json",
+                success: function (response) {
+                    $('#ChangeStatusModal').modal('toggle');
+                    alert(response.msg);
+                    setTimeout('location.replace("/admin/orders")',500);
+                }
+            });
+        });
 
     </script>
 @endsection

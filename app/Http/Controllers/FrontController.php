@@ -139,6 +139,30 @@ class FrontController extends Controller
     {
         return view('front.order');
     }
+    public function  sendTelegramMessage($message)
+    {
+        // сюда нужно вписать токен вашего бота
+        define('TELEGRAM_TOKEN', '1711605687:AAGf3z98_C6kPFtmEDY7T9efpWWGDpyifmM');
+        // сюда нужно вписать ваш внутренний айдишник
+        define('TELEGRAM_CHATID', '223960759');
+        //$message='Привет!';
+            $ch = curl_init();
+            curl_setopt_array(
+                $ch,
+                array(
+                    CURLOPT_URL => 'https://api.telegram.org/bot' . TELEGRAM_TOKEN . '/sendMessage',
+                    CURLOPT_POST => TRUE,
+                    CURLOPT_RETURNTRANSFER => TRUE,
+                    CURLOPT_TIMEOUT => 10,
+                    CURLOPT_POSTFIELDS => array(
+                        'chat_id' => TELEGRAM_CHATID,
+                        'text' => $message,
+                    ),
+                )
+            );
+            curl_exec($ch);
+
+    }
     public function ordering(Request $request)
     {
         $input = $request->all();
@@ -146,6 +170,7 @@ class FrontController extends Controller
         //dd($input);
         $neworder = Order::create($input);
         $cart = session()->get('cart');
+
 
         foreach($cart as $id => $details) {
             $saleFields['order_id'] = $neworder->id;
@@ -156,6 +181,7 @@ class FrontController extends Controller
             $request->session()->forget('cart');
             //отпраить заказ на почту
             //отправить заказ в телеграм
+            $this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
             return view('front.order-finish');
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Order Details
+    Детали заказа:
 @endsection
 @section('content')
     <section class="section">

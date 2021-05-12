@@ -13,17 +13,10 @@
                     <div class="">
                         <h5 >Оформление заказа</h5>
                     </div>
-                    <form action="/ordering" >
+                    <form action="/ordering" " >
                         <div class="modal-body">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-{{--                            <div class="form-group">--}}
-{{--                                <label for="validationEmail">Email address</label>--}}
-{{--                                <input type="email" class="form-control" id="validationEmail"  name="email" aria-describedby="emailHelp" required placeholder="Enter email">--}}
-{{--                                <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>--}}
-{{--                                <div class="invalid-feedback">--}}
-{{--                                    Укажите Email.--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+
                             <div class="mb-3">
                                 <label for="validationTel">Телефон</label>
                                 <input type="tel" class="form-control" id="validationTel" name="telephone" required placeholder="Телефон">

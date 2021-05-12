@@ -144,7 +144,7 @@ class FrontController extends Controller
         // сюда нужно вписать токен вашего бота
         define('TELEGRAM_TOKEN', '1711605687:AAGf3z98_C6kPFtmEDY7T9efpWWGDpyifmM');
         // сюда нужно вписать ваш внутренний айдишник
-        define('TELEGRAM_CHATID', '223960759');
+        define('TELEGRAM_CHATID', '-514543687');
         //$message='Привет!';
             $ch = curl_init();
             curl_setopt_array(
@@ -167,40 +167,33 @@ class FrontController extends Controller
     {
         $input = $request->all();
         $input['status_id'] = 1;
-        //dd($input);
         $neworder = Order::create($input);
         $cart = session()->get('cart');
-
-
         foreach($cart as $id => $details) {
             $saleFields['order_id'] = $neworder->id;
             $saleFields['menu_id'] = $id;
             $saleFields['quantity'] = $details['quantity'];
 
             $sale = Sale::create($saleFields);
-            $request->session()->forget('cart');
-            //отпраить заказ на почту
-            //отправить заказ в телеграм
-            $this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
-            return view('front.order-finish');
-
-
-            //echo $sale->id;
-            //$total += $details['prise'] * $details['quantity'];
         }
+        $request->session()->forget('cart');
 
-        //dd($neworder->id);
+        //отправить заказ в телеграм
+        $this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
+
+        return view('front.order-finish');
     }
     private function getCartTotal()
     {
         $total = 0;
-
         $cart = session()->get('cart');
-
         foreach($cart as $id => $details) {
             $total += $details['prise'] * $details['quantity'];
         }
-
         return number_format($total, 2);
     }
 }
+//todo
+//      1. mind about top product
+//      2. add chart or any grapf in the main admin page
+//      3. etc)

@@ -7,7 +7,7 @@
                         <div class="main-menu  d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a class="active" href="/">Главная</a></li>
+                                    <li><a href="/">Главная</a></li>
                                     <li><a href="/menu">Меню</a></li>
                                     <li><a href="/about">О нас</a></li>
                                 </ul>

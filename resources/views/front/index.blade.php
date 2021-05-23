@@ -19,7 +19,7 @@
                 <div class="col-xl-6 col-md-6 col-lg-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/1.png" alt="">
+                            <img src="front/img/burger/1.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Мясной Бургер</h3>
@@ -33,7 +33,7 @@
                 <div class="col-md-6 col-lg-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/2.png" alt="">
+                            <img src="front/img/burger/2.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Бургер Бойз</h3>
@@ -48,7 +48,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/3.png" alt="">
+                            <img src="front/img/burger/3.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Мисс Дейзи</h3>
@@ -62,7 +62,7 @@
                 <div class="col-xl-6 col-md-6 col-lg-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/4.png" alt="">
+                            <img src="front/img/burger/4.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Хруст</h3>
@@ -75,7 +75,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/5.png" alt="">
+                            <img src="front/img/burger/5.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Гранд Каньон</h3>
@@ -91,7 +91,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/6.png" alt="">
+                            <img src="front/img/burger/6.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Ракета</h3>
@@ -105,7 +105,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/7.png" alt="">
+                            <img src="front/img/burger/7.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Ламберджек</h3>
@@ -119,7 +119,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
-                            <img src="front/img/burger/8.png" alt="">
+                            <img src="front/img/burger/8.webp" alt="">
                         </div>
                         <div class="info">
                             <h3>Овощной бургер</h3>
@@ -144,7 +144,7 @@
         <div class="Burger_President_here">
             <div class="single_Burger_President">
                 <div class="room_thumb">
-                    <img src="front/img/burgers/1.png" alt="">
+                    <img src="front/img/burgers/1.webp" alt="">
                     <div class="room_heading d-flex justify-content-between align-items-center">
                         <div class="room_heading_inner">
                             <span>650₽</span>
@@ -157,7 +157,7 @@
             </div>
             <div class="single_Burger_President">
                 <div class="room_thumb">
-                    <img src="front/img/burgers/2.png" alt="">
+                    <img src="front/img/burgers/2.webp" alt="">
                     <div class="room_heading d-flex justify-content-between align-items-center">
                         <div class="room_heading_inner">
                             <span>590₽</span>
@@ -177,10 +177,10 @@
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="about_thumb2">
                         <div class="img_1">
-                            <img src="front/img/about/1.png" alt="">
+                            <img src="front/img/about/1.webp" alt="">
                         </div>
                         <div class="img_2">
-                            <img src="front/img/about/2.png" alt="">
+                            <img src="front/img/about/2.webp" alt="">
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                             Менять ресторанную индустрию в сторону честности и простоты.
                             Быть надежным другом каждому.</p>
                         <div class="img_thumb">
-                            <img src="front/img/jessica-signature.png" alt="">
+                            <img src="front/img/jessica-signature.webp" alt="">
                         </div>
                     </div>
                 </div>
@@ -289,7 +289,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="single_instagram">
-                        <img src="front/img/instragram/1.png" alt="">
+                        <img src="front/img/instragram/1.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
                                 <i class="fa fa-instagram"></i>
@@ -299,7 +299,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="single_instagram">
-                        <img src="front/img/instragram/2.png" alt="">
+                        <img src="front/img/instragram/2.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
                                 <i class="fa fa-instagram"></i>
@@ -309,7 +309,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="single_instagram">
-                        <img src="front/img/instragram/3.png" alt="">
+                        <img src="front/img/instragram/3.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
                                 <i class="fa fa-instagram"></i>
@@ -319,7 +319,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="single_instagram">
-                        <img src="front/img/instragram/4.png" alt="">
+                        <img src="front/img/instragram/4.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
                                 <i class="fa fa-instagram"></i>

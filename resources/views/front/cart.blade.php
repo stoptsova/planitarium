@@ -63,12 +63,7 @@
             <td></td>
             <td></td>
             <td></td>
-
-            <td colspan="2"> <a href="{{ url('order') }}" class="btn btn-warning">Оформить заказ<i class="fa fa-angle-right"></i></a></td>
-            <!--
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                Оформить заказ
-            </button> -->
+            <td colspan="2"> <a href="{{ url('order') }}" class="btn btn-warning">Оформить заказ <i class="fa fa-angle-right"></i></a></td>
         </tr>
         </tfoot>
     </table>

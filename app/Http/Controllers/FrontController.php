@@ -179,7 +179,7 @@ class FrontController extends Controller
         $request->session()->forget('cart');
 
         //отправить заказ в телеграм
-        $this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
+        //$this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
 
         return view('front.order-finish');
     }

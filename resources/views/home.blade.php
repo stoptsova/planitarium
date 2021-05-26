@@ -38,39 +38,16 @@
                         <div class="row">
                             <div class="card card-statistic-2">
                                 <div class="card-stats">
-                                    <div class="card-stats-title">Статистика заказов -
-                                        <div class="dropdown d-inline">
-                                            <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month" aria-expanded="false">Май</a>
-                                            <ul class="dropdown-menu dropdown-menu-sm" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 18px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <li class="dropdown-title">Выберите месяц</li>
-                                                <li><a href="#" class="dropdown-item">Январь</a></li>
-                                                <li><a href="#" class="dropdown-item">Февраль</a></li>
-                                                <li><a href="#" class="dropdown-item">Март</a></li>
-                                                <li><a href="#" class="dropdown-item">Апрель</a></li>
-                                                <li><a href="#" class="dropdown-item">Май</a></li>
-                                                <li><a href="#" class="dropdown-item">Июнь</a></li>
-                                                <li><a href="#" class="dropdown-item">Июдь</a></li>
-                                                <li><a href="#" class="dropdown-item active">Август</a></li>
-                                                <li><a href="#" class="dropdown-item">Сентябрь</a></li>
-                                                <li><a href="#" class="dropdown-item">Октябрь</a></li>
-                                                <li><a href="#" class="dropdown-item">Ноябрь</a></li>
-                                                <li><a href="#" class="dropdown-item">Декабрь</a></li>
-                                            </ul>
-                                        </div>
+                                    <div class="card-stats-title">
+                                        Статистика заказов
                                     </div>
                                     <div class="card-stats-items">
-                                        <div class="card-stats-item">
-                                            <div class="card-stats-item-count">24</div>
-                                            <div class="card-stats-item-label">Отменено</div>
-                                        </div>
-                                        <div class="card-stats-item">
-                                            <div class="card-stats-item-count">12</div>
-                                            <div class="card-stats-item-label">В обработке</div>
-                                        </div>
-                                        <div class="card-stats-item">
-                                            <div class="card-stats-item-count">23</div>
-                                            <div class="card-stats-item-label">Выполнено</div>
-                                        </div>
+                                        @foreach ($ordersCounting as $counts)
+                                            <div class="card-stats-item">
+                                                <div class="card-stats-item-count">{{ $counts->con }}</div>
+                                                <div class="card-stats-item-label">{{ $counts->status }}</div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="card-icon shadow-primary bg-primary">
@@ -81,7 +58,7 @@
                                         <h4>Всего заказов</h4>
                                     </div>
                                     <div class="card-body">
-                                        59
+                                        {{ $ordersTotalCount }}
                                     </div>
                                 </div>
                             </div>

@@ -29,13 +29,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/menus', App\Http\Controllers\MenuController::class);
     Route::resource('statuses', App\Http\Controllers\StatusController::class);
     Route::resource('orders', App\Http\Controllers\OrderController::class);
+    Route::get('/chs', [App\Http\Controllers\OrderController::class, 'changeStatus']);
 });
 
-Route::get('/chs', [App\Http\Controllers\OrderController::class, 'changeStatus']);
 
 Route::get('cart', [App\Http\Controllers\FrontController::class,'cart'])->name('cart');
 Route::get('order', [App\Http\Controllers\FrontController::class,'createOrder'])->name('order');
 Route::get('ordering', [App\Http\Controllers\FrontController::class,'ordering'])->name('ordering');
+Route::get('order-finish', function (){ return view('front.order-finish');});;
 
 Route::get('add-to-cart/{id}', [App\Http\Controllers\FrontController::class,'addToCart']);
 

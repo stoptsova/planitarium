@@ -28,37 +28,36 @@
                         <h3 class="footer_title">
                             Оставайся на связи
                         </h3>
-                        <form action="#" class="newsletter_form">
-                            <input type="text" placeholder="Введите вашу почту">
-                            <button type="submit">Подписаться</button>
-                        </form>
-                        <p class="newsletter_text">Оставайтесь с нами на связи, чтобы получать эксклюзивные предложения!</p>
+                         <div class="socail_links text-center">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-vk"></i>
+
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-twitter-alt"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4">
-                    <div class="socail_links text-center">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="ti-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="ti-twitter-alt"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="ti-facebook"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="copy-right_text">

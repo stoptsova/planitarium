@@ -292,7 +292,7 @@
                         <img src="front/img/instragram/1.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -302,7 +302,7 @@
                         <img src="front/img/instragram/2.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -312,7 +312,7 @@
                         <img src="front/img/instragram/3.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -322,7 +322,7 @@
                         <img src="front/img/instragram/4.webp" alt="">
                         <div class="ovrelay">
                             <a href="#">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>

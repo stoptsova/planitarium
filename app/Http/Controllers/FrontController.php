@@ -56,7 +56,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+            return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
             //return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
@@ -70,7 +70,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+            return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
             //return redirect()->back()->with('success', 'Product added to cart successfully!');
 
@@ -88,7 +88,7 @@ class FrontController extends Controller
 
         $htmlCart = view('front.includes._header')->render();
 
-        return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+        return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
         //return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
@@ -108,7 +108,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Cart updated successfully', 'data' => $htmlCart, 'total' => $total, 'subTotal' => $subTotal]);
+            return response()->json(['msg' => 'Корзина обновлена', 'data' => $htmlCart, 'total' => $total, 'subTotal' => $subTotal]);
 
             //session()->flash('success', 'Cart updated successfully');
         }
@@ -130,7 +130,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total]);
+            return response()->json(['msg' => 'Товар удалён успешно', 'data' => $htmlCart, 'total' => $total]);
 
             //session()->flash('success', 'Product removed successfully');
         }
@@ -166,6 +166,7 @@ class FrontController extends Controller
     public function ordering(Request $request)
     {
         $input = $request->all();
+        //dd($input);
         $input['status_id'] = 1;
         $neworder = Order::create($input);
         $cart = session()->get('cart');
@@ -181,7 +182,8 @@ class FrontController extends Controller
         //отправить заказ в телеграм
         //$this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
 
-        return view('front.order-finish');
+        //return view('front.order-finish');
+        return response()->json(['msg' => 'Ваш заказ оформлен!']);
     }
     private function getCartTotal()
     {

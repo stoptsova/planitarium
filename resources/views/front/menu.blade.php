@@ -101,10 +101,7 @@
                 data: {_token: '{{ csrf_token() }}'},
                 dataType: "json",
                 success: function (response) {
-
                     ele.siblings('.btn-loading').hide();
-
-
                     $("#header-bar").html(response.data);
                     $("#message").html('<button type="button" class="close" data-dismiss="alert">x</button>'+response.msg);
                     $("#message").fadeTo(2000, 500).slideUp(500, function() {

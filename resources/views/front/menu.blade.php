@@ -19,10 +19,6 @@
                 </div>
             </div>
             <div class="row">
-
-
-
-
                 @foreach($products as $product)
                 <div class="col-xl-6 col-md-6 col-lg-6">
                     <div class="single_delicious d-flex align-items-center">

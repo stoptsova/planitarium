@@ -1,10 +1,6 @@
 @extends('front.layout')
-
-
-
 @section('content')
     @include('front.includes.bredcrumb')
-
     <div class="best_burgers_area">
         <div class="container">
             <div class="row">
@@ -41,7 +37,6 @@
                                 <a class="btn btn-primary" data-toggle="collapse" href="#orderContent" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Содержание заказа
                                 </a>
-
                             </p>
                             <div class="collapse" id="orderContent">
                                 <div class="card card-body">
@@ -57,13 +52,9 @@
                                         <tbody>
 
                                         <?php $total = 0 ?>
-
                                         @if(session('cart'))
-
                                             @foreach((array) session('cart') as $id => $details)
-
                                                 <?php $total += $details['prise'] * $details['quantity'] ?>
-
                                                 <tr>
                                                     <td data-th="Product">
                                                         <div class="row">
@@ -78,7 +69,6 @@
                                                 </tr>
                                             @endforeach
                                         @endif
-
                                         </tbody>
                                         <tfoot>
                                         <tr class="visible-xs">
@@ -88,12 +78,8 @@
                                             <td>
                                                 <a class="btn btn-primary" data-toggle="collapse" href="#orderContent" role="button" aria-expanded="false" aria-controls="collapseExample">Скрыть</a>
                                             </td>
-
-
                                             <td colspan="2">
-
                                             </td>
-
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -172,7 +158,5 @@
                 });
             };
         }
-
     </script>
-
 @endsection

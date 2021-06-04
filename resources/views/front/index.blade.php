@@ -16,119 +16,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/1.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Мясной Бургер</h3>
-                            <p>Сытная бомба для самого голодного дровосека с нашей
-                                знаменитой говяжьей котлетой, но! Ещё с луковыми
-                                кольцами и специальным секретным соусом от шеф-повара</p>
-                            <span>500₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/2.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Бургер Бойз</h3>
-                            <p>Это наш чикенбургер. Готовим серьезно:
-                                в Josper, с куриной котлетой, беконом,
-                                яйцом и свежими овощами.</p>
-                            <span>450₽</span>
+                @foreach($hitMenu as $hit)
+                    <div class="col-12 col-sm-12  col-md-6 col-lg-6 ">
+                        <div class="single_delicious d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="{{ $hit->image }}" alt="" style="width: 166px; height: 166px;">
+                            </div>
+                            <div class="info">
+                                <h3>{{ $hit->name }}</h3>
+                                <p>{{ $hit->description }}</p>
+                                <div style="display: flex;justify-content: space-around;">
+                                    <span>{{ $hit->prise }}₽</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                @endforeach
 
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/3.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Мисс Дейзи</h3>
-                            <p> Нежный, но настойчивый, как настоящая женщина.
-                                Наполнение из цельного куриного филе в
-                                соблазнительном кляре, подаётся с картофелем пай.</p>
-                            <span>380₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/4.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Хруст</h3>
-                            <p>Наш фирменный бургер со стейком нерки, обжаренным
-                                в сухарях с заправкой из соуса тартар.</p>
-                            <span>420₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/5.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Гранд Каньон</h3>
-                            <p>Классика, иначе и не скажешь: тот самый легендарный
-                                с котлетой из 100% говядины, приготовленной горячим
-                                испанцем по имени Josper, с сыром чеддер, беконом
-                                и свежими овощами.</p>
-                            <span>390₽</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/6.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Ракета</h3>
-                            <p>Всем своим видом этот бургер бросает тебе вызов.
-                                Две котлеты из рубленой говядины с сырами
-                                моцарелла и чеддер, овощами и беконом.</p>
-                            <span>550₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/7.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Ламберджек</h3>
-                            <p>Бургер с котлетой из рубленой говядины,
-                                подаем на белой булке с перцем халапеньо,
-                                лечо и соусом чили.</p>
-                            <span>380₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="front/img/burger/8.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Овощной бургер</h3>
-                            <p>Приготовим на ваше усмотрение: с сыром
-                                морацелла и жареным на гриле яйцом или без</p>
-                            <span>300₽</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -287,7 +191,7 @@
     <div class="instragram_area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-sm-6 col-lg-3 col-md-6">
                     <div class="single_instagram">
                         <img src="front/img/instragram/1.webp" alt="">
                         <div class="ovrelay">
@@ -297,7 +201,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-sm-6 col-lg-3 col-md-6">
                     <div class="single_instagram">
                         <img src="front/img/instragram/2.webp" alt="">
                         <div class="ovrelay">
@@ -307,7 +211,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-sm-6 col-lg-3 col-md-6">
                     <div class="single_instagram">
                         <img src="front/img/instragram/3.webp" alt="">
                         <div class="ovrelay">
@@ -317,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-sm-6 col-lg-3 col-md-6">
                     <div class="single_instagram">
                         <img src="front/img/instragram/4.webp" alt="">
                         <div class="ovrelay">

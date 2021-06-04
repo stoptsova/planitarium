@@ -6,18 +6,35 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PharIo\Manifest\Email;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view(('front.index'));
+        $hitMenu = $this->topSales(4);
+        //dd($topSales);
+        return view('front.index',compact('hitMenu'));
+    }
+    public function topSales($limit)
+    {
+        $topSales = DB::table('sales')
+            ->select('menus.id as id',
+                'menus.name as name', 'menus.image as image',
+                'menus.description as description',
+                'menus.prise as prise',
+                DB::raw('SUM(quantity) AS data'))
+            ->leftJoin('menus', 'menus.id', '=', 'sales.menu_id')
+            ->groupBy('menu_id')
+            ->orderBy('data', 'desc')
+            ->limit($limit)
+            ->get();
+        return $topSales;
     }
     public function menu()
     {
         $products = Menu::all();
-        //dd($products);
         return view('front.menu', compact('products'));
     }
     public function about()
@@ -195,7 +212,4 @@ class FrontController extends Controller
         return number_format($total, 2);
     }
 }
-//todo
-//      1. mind about top product
-//      2. add chart or any grapf in the main admin page
-//      3. etc)
+

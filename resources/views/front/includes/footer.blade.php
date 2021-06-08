@@ -8,7 +8,7 @@
                             Владивосток
                         </h3>
                         <p>ул.Светланская 32<br>
-                            <a href="#">info@burger.com</a></p>
+                            <a href="#">vladivostok@planitarium.ru</a></p>
                         <a class="number" href="#">+8 (999) 000 99 00</a>
 
                     </div>
@@ -19,8 +19,8 @@
                             Хабаровск
                         </h3>
                         <p>ул.Синельникова 15<br>
-                            <a href="#">info@burger.com</a></p>
-                        <a class="number" href="#">+8 (999) 000 99 00</a>
+                            <a href="#">khabarovsk@planitarium.ru</a></p>
+                        <a class="number" href="#">+7 (4212) 55‒63‒02</a>
                     </div>
                 </div>
                 <div class="col-sm-6  col-md-12 col-lg-4">

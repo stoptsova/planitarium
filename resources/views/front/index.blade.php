@@ -188,10 +188,10 @@
     <!-- testimonial_area_ned  -->
 
     <!-- instragram_area_start -->
-    <div class="instragram_area">
+    <div class="instragram_area d-none d-xl-block d-lg-block">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-lg-3 col-md-6 ">
                     <div class="single_instagram">
                         <img src="front/img/instragram/1.webp" alt="">
                         <div class="ovrelay">

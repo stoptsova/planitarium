@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Order;
 use App\Models\Sale;
 use App\Models\Status;
 use App\Repositories\OrderRepository;
@@ -31,10 +32,12 @@ class OrderController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $orders = $this->orderRepository->paginate(10);
+        $orders = Order::paginatedesc()->paginate(10);
+        //$orders = $this->orderRepository->paginate(10);
+        $statuses = Status::all();
 
         return view('orders.index')
-            ->with('orders', $orders);
+            ->with('orders', $orders)->with('statuses', $statuses);
     }
 
     /**
@@ -63,6 +66,24 @@ class OrderController extends AppBaseController
         Flash::success('Order saved successfully.');
 
         return redirect(route('orders.index'));
+    }
+    public function changeStatus(Request $request)
+    {
+        if($request->id and $request->status_id)
+        {
+            $order = $this->orderRepository->find($request->id);
+            $order->status_id = $request->status_id;
+            $order->update();
+            //$htmlCart = view('orders.show')->render();
+            return response()->json(['msg' => 'Статус был изменён']);
+        }else{
+            return response()->json(['msg' => 'fack']);
+        }
+
+
+        //dd($request->id." -+- ".$request->status_id."-order->".$order);
+        //return redirect(route('order.show'));
+//
     }
 
     /**

@@ -63,12 +63,7 @@
             <td></td>
             <td></td>
             <td></td>
-
-            <td colspan="2"> <a href="{{ url('order') }}" class="btn btn-warning">Оформить заказ<i class="fa fa-angle-right"></i></a></td>
-            <!--
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                Оформить заказ
-            </button> -->
+            <td colspan="2"> <a href="{{ url('order') }}" class="btn btn-warning">Оформить заказ <i class="fa fa-angle-right"></i></a></td>
         </tr>
         </tfoot>
     </table>
@@ -104,7 +99,6 @@
                         <div class="invalid-feedback">
                             Укажите Телефон.
                         </div>
-
                         <div class="mb-3">
                             <label for="validationTextarea">Адрес доставки</label>
                             <textarea class="form-control " name="address" id="validationTextarea" placeholder="Укажите адрес доставки..." required></textarea>
@@ -112,12 +106,10 @@
                                 Укажите адрес доставки.
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success">Заказать</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -125,42 +117,27 @@
 @endsection
 
 @section('scripts')
-
-
     <script type="text/javascript">
         $("#message").hide();
         $(".update-cart").click(function (e) {
             e.preventDefault();
-
             var ele = $(this);
-
             var parent_row = ele.parents("tr");
-
             var quantity = parent_row.find(".quantity").val();
-
             var product_subtotal = parent_row.find("span.product-subtotal");
-
             var cart_total = $(".cart-total");
-
             var loading = parent_row.find(".btn-loading");
-
             loading.show();
-
             $.ajax({
                 url: '{{ url('update-cart') }}',
                 method: "patch",
                 data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: quantity},
                 dataType: "json",
                 success: function (response) {
-
                     loading.hide();
-
                     $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
-
                     $("#header-bar").html(response.data);
-
                     product_subtotal.text(response.subTotal);
-
                     cart_total.text(response.total);
                 }
             });
@@ -168,13 +145,9 @@
 
         $(".remove-from-cart").click(function (e) {
             e.preventDefault();
-
             var ele = $(this);
-
             var parent_row = ele.parents("tr");
-
             var cart_total = $(".cart-total");
-
             if(confirm("Вы уверены?")) {
                 $.ajax({
                     url: '{{ url('remove-from-cart') }}',
@@ -182,17 +155,12 @@
                     data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
                     dataType: "json",
                     success: function (response) {
-
                         parent_row.remove();
-
-
                         $("#message").html('<button type="button" class="close" data-dismiss="alert">x</button>'+response.msg);
                         $("#message").fadeTo(2000, 500).slideUp(500, function() {
                             $("#message").slideUp(500);
                         });
-
                         $("#header-bar").html(response.data);
-
                         cart_total.text(response.total);
                     }
                 });

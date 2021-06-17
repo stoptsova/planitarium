@@ -19,10 +19,6 @@
                 </div>
             </div>
             <div class="row">
-
-
-
-
                 @foreach($products as $product)
                 <div class="col-xl-6 col-md-6 col-lg-6">
                     <div class="single_delicious d-flex align-items-center">
@@ -80,56 +76,7 @@
     </div>
     <!-- features_room_end -->
 
-    <!-- instragram_area_start -->
-    <!--
 
-    <div class="instragram_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="single_instagram">
-                        <img src="front/img/instragram/1.png" alt="">
-                        <div class="ovrelay">
-                            <a href="#">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single_instagram">
-                        <img src="front/img/instragram/2.png" alt="">
-                        <div class="ovrelay">
-                            <a href="#">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single_instagram">
-                        <img src="front/img/instragram/3.png" alt="">
-                        <div class="ovrelay">
-                            <a href="#">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single_instagram">
-                        <img src="front/img/instragram/4.png" alt="">
-                        <div class="ovrelay">
-                            <a href="#">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- -->
 
 
 @endsection
@@ -150,10 +97,7 @@
                 data: {_token: '{{ csrf_token() }}'},
                 dataType: "json",
                 success: function (response) {
-
                     ele.siblings('.btn-loading').hide();
-
-
                     $("#header-bar").html(response.data);
                     $("#message").html('<button type="button" class="close" data-dismiss="alert">x</button>'+response.msg);
                     $("#message").fadeTo(2000, 500).slideUp(500, function() {

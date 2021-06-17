@@ -1,4 +1,10 @@
 (function ($) {
+    // set Active class in Menu
+    $('#navigation [href]').each(function() {
+        if (this.href == window.location.href) {
+            $(this).addClass('active');
+        }
+    });
 "use strict";
 // TOP Menu Sticky
 $(window).on('scroll', function () {
@@ -11,6 +17,8 @@ $(window).on('scroll', function () {
     $('#back-top').fadeIn(500);
 	}
 });
+
+
 
 
 $(document).ready(function(){

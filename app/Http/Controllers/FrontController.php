@@ -6,18 +6,35 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PharIo\Manifest\Email;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view(('front.index'));
+        $hitMenu = $this->topSales(4);
+        //dd($topSales);
+        return view('front.index',compact('hitMenu'));
+    }
+    public function topSales($limit)
+    {
+        $topSales = DB::table('sales')
+            ->select('menus.id as id',
+                'menus.name as name', 'menus.image as image',
+                'menus.description as description',
+                'menus.prise as prise',
+                DB::raw('SUM(quantity) AS data'))
+            ->leftJoin('menus', 'menus.id', '=', 'sales.menu_id')
+            ->groupBy('menu_id')
+            ->orderBy('data', 'desc')
+            ->limit($limit)
+            ->get();
+        return $topSales;
     }
     public function menu()
     {
         $products = Menu::all();
-        //dd($products);
         return view('front.menu', compact('products'));
     }
     public function about()
@@ -56,7 +73,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+            return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
             //return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
@@ -70,7 +87,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+            return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
             //return redirect()->back()->with('success', 'Product added to cart successfully!');
 
@@ -88,7 +105,7 @@ class FrontController extends Controller
 
         $htmlCart = view('front.includes._header')->render();
 
-        return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+        return response()->json(['msg' => 'Товар добавлен в карзину!', 'data' => $htmlCart]);
 
         //return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
@@ -108,7 +125,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Cart updated successfully', 'data' => $htmlCart, 'total' => $total, 'subTotal' => $subTotal]);
+            return response()->json(['msg' => 'Корзина обновлена', 'data' => $htmlCart, 'total' => $total, 'subTotal' => $subTotal]);
 
             //session()->flash('success', 'Cart updated successfully');
         }
@@ -130,7 +147,7 @@ class FrontController extends Controller
 
             $htmlCart = view('front.includes._header')->render();
 
-            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total]);
+            return response()->json(['msg' => 'Товар удалён успешно', 'data' => $htmlCart, 'total' => $total]);
 
             //session()->flash('success', 'Product removed successfully');
         }
@@ -139,42 +156,60 @@ class FrontController extends Controller
     {
         return view('front.order');
     }
+    public function  sendTelegramMessage($message)
+    {
+        // сюда нужно вписать токен вашего бота
+        define('TELEGRAM_TOKEN', '1711605687:AAGf3z98_C6kPFtmEDY7T9efpWWGDpyifmM');
+        // сюда нужно вписать ваш внутренний айдишник
+        define('TELEGRAM_CHATID', '-514543687');
+        //$message='Привет!';
+            $ch = curl_init();
+            curl_setopt_array(
+                $ch,
+                array(
+                    CURLOPT_URL => 'https://api.telegram.org/bot' . TELEGRAM_TOKEN . '/sendMessage',
+                    CURLOPT_POST => TRUE,
+                    CURLOPT_RETURNTRANSFER => TRUE,
+                    CURLOPT_TIMEOUT => 10,
+                    CURLOPT_POSTFIELDS => array(
+                        'chat_id' => TELEGRAM_CHATID,
+                        'text' => $message,
+                    ),
+                )
+            );
+            curl_exec($ch);
+
+    }
     public function ordering(Request $request)
     {
         $input = $request->all();
-        $input['status_id'] = 1;
         //dd($input);
+        $input['status_id'] = 1;
         $neworder = Order::create($input);
         $cart = session()->get('cart');
-
         foreach($cart as $id => $details) {
             $saleFields['order_id'] = $neworder->id;
             $saleFields['menu_id'] = $id;
             $saleFields['quantity'] = $details['quantity'];
 
             $sale = Sale::create($saleFields);
-            $request->session()->forget('cart');
-            //отпраить заказ на почту
-            //отправить заказ в телеграм
-            return view('front.order-finish');
-
-
-            //echo $sale->id;
-            //$total += $details['prise'] * $details['quantity'];
         }
+        $request->session()->forget('cart');
 
-        //dd($neworder->id);
+        //отправить заказ в телеграм
+        //$this->sendTelegramMessage('Поступил новый заказ №'.$neworder->id);
+
+        //return view('front.order-finish');
+        return response()->json(['msg' => 'Ваш заказ оформлен!']);
     }
     private function getCartTotal()
     {
         $total = 0;
-
         $cart = session()->get('cart');
-
         foreach($cart as $id => $details) {
             $total += $details['prise'] * $details['quantity'];
         }
-
         return number_format($total, 2);
     }
 }
+

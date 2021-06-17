@@ -1,29 +1,17 @@
 @extends('front.layout')
-
-
-
 @section('content')
     @include('front.includes.bredcrumb')
-
     <div class="best_burgers_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="alert alert-success" id="message"></div>
+                    <div  id="message"></div>
                     <div class="">
                         <h5 >Оформление заказа</h5>
                     </div>
-                    <form action="/ordering" >
+                    <form action="#" >
                         <div class="modal-body">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-{{--                            <div class="form-group">--}}
-{{--                                <label for="validationEmail">Email address</label>--}}
-{{--                                <input type="email" class="form-control" id="validationEmail"  name="email" aria-describedby="emailHelp" required placeholder="Enter email">--}}
-{{--                                <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>--}}
-{{--                                <div class="invalid-feedback">--}}
-{{--                                    Укажите Email.--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="mb-3">
                                 <label for="validationTel">Телефон</label>
                                 <input type="tel" class="form-control" id="validationTel" name="telephone" required placeholder="Телефон">
@@ -31,20 +19,17 @@
                             <div class="invalid-feedback">
                                 Укажите Телефон.
                             </div>
-
                             <div class="mb-3">
                                 <label for="validationTextarea">Адрес доставки</label>
-                                <textarea class="form-control " name="address" id="validationTextarea" placeholder="Укажите адрес доставки..." required></textarea>
+                                <textarea class="form-control " name="address" id="validationAddress" placeholder="Укажите адрес доставки..." required></textarea>
                                 <div class="invalid-feedback">
                                     Укажите адрес доставки.
                                 </div>
                             </div>
-
                         </div>
                         <div class="modal-footer border-top-0 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <a href="#" id="send"  onclick="validator()" class="btn btn-success">Оформить заказ</a>
                         </div>
-
                     </form>
                     <div class="row">
                         <div class="col">
@@ -52,7 +37,6 @@
                                 <a class="btn btn-primary" data-toggle="collapse" href="#orderContent" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Содержание заказа
                                 </a>
-
                             </p>
                             <div class="collapse" id="orderContent">
                                 <div class="card card-body">
@@ -68,13 +52,9 @@
                                         <tbody>
 
                                         <?php $total = 0 ?>
-
                                         @if(session('cart'))
-
                                             @foreach((array) session('cart') as $id => $details)
-
                                                 <?php $total += $details['prise'] * $details['quantity'] ?>
-
                                                 <tr>
                                                     <td data-th="Product">
                                                         <div class="row">
@@ -89,7 +69,6 @@
                                                 </tr>
                                             @endforeach
                                         @endif
-
                                         </tbody>
                                         <tfoot>
                                         <tr class="visible-xs">
@@ -99,12 +78,8 @@
                                             <td>
                                                 <a class="btn btn-primary" data-toggle="collapse" href="#orderContent" role="button" aria-expanded="false" aria-controls="collapseExample">Скрыть</a>
                                             </td>
-
-
                                             <td colspan="2">
-
                                             </td>
-
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -112,134 +87,76 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title" id="exampleModalLabel">Оформление заказа</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="/ordering" >
-                    <div class="modal-body">
-                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <div class="form-group">
-                            <label for="validationEmail">Email address</label>
-                            <input type="email" class="form-control" id="validationEmail"  name="email" aria-describedby="emailHelp" required placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>
-                            <div class="invalid-feedback">
-                                Укажите Email.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="validationTel">Телефон</label>
-                            <input type="tel" class="form-control" id="validationTel" name="tel" required placeholder="Телефон">
-                        </div>
-                        <div class="invalid-feedback">
-                            Укажите Телефон.
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="validationTextarea">Адрес доставки</label>
-                            <textarea class="form-control " name="address" id="validationTextarea" placeholder="Укажите адрес доставки..." required></textarea>
-                            <div class="invalid-feedback">
-                                Укажите адрес доставки.
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer border-top-0 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('scripts')
-
-
     <script type="text/javascript">
         $("#message").hide();
-        $(".update-cart").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-
-            var parent_row = ele.parents("tr");
-
-            var quantity = parent_row.find(".quantity").val();
-
-            var product_subtotal = parent_row.find("span.product-subtotal");
-
-            var cart_total = $(".cart-total");
-
-            var loading = parent_row.find(".btn-loading");
-
-            loading.show();
-
-            $.ajax({
-                url: '{{ url('update-cart') }}',
-                method: "patch",
-                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: quantity},
-                dataType: "json",
-                success: function (response) {
-
-                    loading.hide();
-
-                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
-
-                    $("#header-bar").html(response.data);
-
-                    product_subtotal.text(response.subTotal);
-
-                    cart_total.text(response.total);
-                }
+        function showmsg(msg,type) {
+            $("#message").html('<div class="alert alert-' + type + '"><button type="button" class="close" data-dismiss="alert">x</button>' + msg + '</div>');
+            $("#message").fadeTo(2000, 500).slideUp(500, function () {
+                $("#message").slideUp(500);
             });
-        });
-
-        $(".remove-from-cart").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-
-            var parent_row = ele.parents("tr");
-
-            var cart_total = $(".cart-total");
-
-            if(confirm("Вы уверены?")) {
+        };
+        function phonevalidation(phone){
+            let msg = '';
+            let status = '';
+            let regex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+            var i=phone.replace(/\D+/g,'').length;
+            if(!regex.test(phone) && i!=11){
+               msg='Не првавельно введён номер телефона !';
+               status= false;
+            }else{
+                msg='Телефон проверен';
+                status= true;
+            }
+            return {
+                status: status,
+                msg: msg
+            };
+        }
+        function addressvlidation(address){
+            let msg = 'yes';
+            let status = true;
+            var i=address.length;
+            if( i<=20){
+               msg='Адресс слишком короткий';
+               status= false;
+            }
+            return {
+                status: status,
+                msg: msg
+            };
+        }
+        function validator() {
+            let phone = $('#validationTel').val(); // Получаем значение phone
+            let address = $('#validationAddress').val(); // Получаем значение address
+            var validphone = phonevalidation(phone);
+            var validaddress = addressvlidation(address);
+            if(!validphone.status || !validaddress.status ){
+                showmsg(validphone.msg+'<br>'+validaddress.msg,'danger')
+            }else{
                 $.ajax({
-                    url: '{{ url('remove-from-cart') }}',
-                    method: "DELETE",
-                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                    url: '{{ url('ordering') }}',
+                    method: "get",
+                    data: {
+                        _token: '{{ csrf_token() }},',
+                        telephone: phone,
+                        address: address
+                    },
                     dataType: "json",
                     success: function (response) {
-
-                        parent_row.remove();
-
-
-                        $("#message").html('<button type="button" class="close" data-dismiss="alert">x</button>'+response.msg);
-                        $("#message").fadeTo(2000, 500).slideUp(500, function() {
-                            $("#message").slideUp(500);
-                        });
-
-                        $("#header-bar").html(response.data);
-
-                        cart_total.text(response.total);
+                        showmsg(validphone.msg+'<br>'+validaddress.msg+'<br><h1>'+response.msg+'</h1>','success');
+                        $(location).attr('href', '/order-finish')
                     }
                 });
-            }
-        });
-
+            };
+        }
     </script>
-
 @endsection

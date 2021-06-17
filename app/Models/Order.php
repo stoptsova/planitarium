@@ -62,5 +62,10 @@ class Order extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function scopePaginatedesc($query)
+    {
+        return $query->where('deleted_at', NULL)->orderBy('id', 'desc');
+    }
+
 
 }

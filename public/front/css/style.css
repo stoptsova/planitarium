@@ -1134,12 +1134,12 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(/front/img/banner/1.png);
+  background-image: url(/front/img/banner/1.webp);
 }
 
 /* line 4, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/_slider.scss */
 .slider_bg_2 {
-  background-image: url(/front/img/banner/2.png);
+  background-image: url(/front/img/banner/2.webp);
 }
 
 /* line 7, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/_slider.scss */
@@ -1851,7 +1851,7 @@ h3 {
 
 /* line 5, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/_offers.scss */
 .video_bg {
-  background-image: url(../img/video/video.png);
+  background-image: url(../img/video/video.webp);
 }
 
 /* line 8, ../../Arafath/CL/December/229. Restaurant (Burger)/HTML/scss/_offers.scss */
